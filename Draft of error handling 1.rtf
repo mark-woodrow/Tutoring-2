@@ -1,0 +1,779 @@
+{\rtf1\ansi\deff4\adeflang1025
+{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\froman\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}{\f4\froman\fprq2\fcharset0 Calibri;}{\f5\fswiss\fprq2\fcharset0 Liberation Sans{\*\falt Arial};}{\f6\froman\fprq2\fcharset0 Times Roman{\*\falt Times New Roman};}{\f7\froman\fprq2\fcharset0 Courier New;}{\f8\froman\fprq2\fcharset128 Times New Roman;}{\f9\fnil\fprq1\fcharset128 Courier 10 Pitch;}{\f10\fnil\fprq0\fcharset0 Consolas{\*\falt Menlo};}{\f11\fnil\fprq2\fcharset0 Droid Sans Fallback;}{\f12\fnil\fprq2\fcharset0 FreeSans;}{\f13\fswiss\fprq0\fcharset128 FreeSans;}{\f14\fnil\fprq2\fcharset0 Courier New;}}
+{\colortbl;\red0\green0\blue0;\red36\green39\blue41;\red238\green236\blue225;\red128\green128\blue128;}
+{\stylesheet{\s0\snext0\ql\widctlpar\ltrpar\sl276\slmult1{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\sb0\sa200\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057 Normal;}
+{\*\cs15\snext15 Default Paragraph Font;}
+{\s16\sbasedon0\snext17\ql\widctlpar\sb240\sa120\keepn\ltrpar\dbch\af11\dbch\af12\afs28\loch\f5\fs28 Heading;}
+{\s17\sbasedon0\snext17\sl288\slmult1\ql\widctlpar\sb0\sa140\ltrpar Text Body;}
+{\s18\sbasedon17\snext18\sl288\slmult1\ql\widctlpar\sb0\sa140\ltrpar\dbch\af13 List;}
+{\s19\sbasedon0\snext19\ql\widctlpar\sb120\sa120\noline\ltrpar\i\dbch\af13\afs24\ai\fs24 Caption;}
+{\s20\sbasedon0\snext20\ql\widctlpar\noline\ltrpar\dbch\af13 Index;}
+{\s21\snext21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057 No Spacing;}
+}{\info{\author Mark Woodrow}{\creatim\yr2016\mo10\dy12\hr9\min29}{\author Mark Woodrow}{\revtim\yr2016\mo10\dy12\hr18\min23}{\printim\yr0\mo0\dy0\hr0\min0}{\comment LibreOffice}{\vern67241986}}\deftab720\deftab720
+\viewscale140
+{\*\pgdsctbl
+{\pgdsc0\pgdscuse451\pgwsxn11906\pghsxn16838\marglsxn1440\margrsxn1440\margtsxn1440\margbsxn1440\pgdscnxt0 Default Style;}}
+\formshade{\*\pgdscno0}\paperh16838\paperw11906\margl1440\margr1440\margt1440\margb1440\sectd\sbknone\sectunlocked1\pgndec\pgwsxn11906\pghsxn16838\marglsxn1440\margrsxn1440\margtsxn1440\margbsxn1440\ftnbj\ftnstart1\ftnrstcont\ftnnar\aenddoc\aftnrstcont\aftnstart1\aftnnrlc
+\pgndec\pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\b\rtlch \ltrch\loch\fs28\loch\f8
+Error handling in C}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+C has a simple way of handling errors.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+It uses a global variable called errno.  It is declared in a header file called errno.h, along with a whole lot of error values.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+Global variables are ones that are }{\b\ab\rtlch \ltrch\loch\loch\f8
+in scope}{\rtlch \ltrch\loch\loch\f8
+ }{\rtlch \ltrch\loch\loch\f8
+throughout}{\rtlch \ltrch\loch\loch\f8
+ the whole program code, and so can be read and set everywhere}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+Local variables, by contrast, are only visible in a particular scope, be it a function or a file.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\ul\ulc0\rtlch \ltrch\loch\loch\f8
+Scope}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+Example \u8211\'3f }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\dbch\af14\rtlch \ltrch\loch\loch\f8
+void someFunction() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\dbch\af14\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\dbch\af14\rtlch \ltrch\loch\loch\f8
+\tab int aLocalVariable;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\dbch\af14\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\dbch\af14\rtlch \ltrch\loch\loch\f8
+\tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+This variable is only visible inside the function.  It gets created, and allocated some memory, when the function is called, and it gets destroyed when the function exits.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+The same is true of }{\b\rtlch \ltrch\loch\loch\f8
+function arguments}{\rtlch \ltrch\loch\loch\f8
+.  They get created, and values assigned, when the function is called.  They are forgotten when the function exits.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+A global variable needs to be declared like this :-}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+in program.c :-}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#include<stdio.h>}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#include<stdlib.h>}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+int globalVar = 0;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+void someFunction() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab globalVar = 10;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\li0\ri0\lin0\rin0\fi720\cbpat3{\rtlch \ltrch\loch\loch\f8
+\}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+int main() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab printf(\uc2 \u8220\'81\'67Global var is %d\\n\u8221\'81\'68, globalVar);\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab // This will change the value of global var}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab someFunction();}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab printf(\uc2 \u8220\'81\'67Global var is now %d\\n\u8221\'81\'68, globalVar);\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+Because of its position at the top of the file, outside of any function, it is a global variable, and is in scope (can be seen, read, written to) at all subsequent points.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\ul\ulc0\rtlch \ltrch\loch\loch\f8
+Masking}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+If you declare a local variable with the same name as a global one, the local one will hide or mask the global one :-}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#include<stdio.h>}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#include<stdlib.h>}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+int globalVar = 0;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+void showMasking() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab printf(\uc2 \u8220\'81\'67in showMasking(), globalVar is %d\\n\u8221\'81\'68, globalVar);\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab // this will mask the global variable}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab int globalVar = 5;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab printf(\uc2 \u8220\'81\'67in showMasking(), globalVar is %d\\n\u8221\'81\'68, globalVar);\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+void someFunction() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab globalVar = 10;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\li0\ri0\lin0\rin0\fi720\cbpat3{\rtlch \ltrch\loch\loch\f8
+\}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+int main() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab printf(\uc2 \u8220\'81\'67Global var is %d\\n\u8221\'81\'68, globalVar);\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab // This will change the value of global var}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab someFunction();}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab printf(\uc2 \u8220\'81\'67Global var is now %d\\n\u8221\'81\'68, globalVar);\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab showMasking();}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab printf(\uc2 \u8220\'81\'67after masking, global var is now %d\\n\u8221\'81\'68, globalVar);\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+What should happen \u8211\'3f inside showMasking() we declare a var of the same name, and set it.  After the function ha}{\rtlch \ltrch\loch\loch\f8
+s}{\rtlch \ltrch\loch\loch\f8
+ exited, the original global variable is still there, with its value unaltered.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+Anyway, back to errno.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+The usual way to use it is like this.  Functions usually return -1 if an error happened, or zero if everything went ok.  If an error did occur, they also set the global variable errno to indicate what the error was.  Like this :-}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#include<stdio.h>}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#include<errno.h>}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+int myBadFunction() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab /* set errno to some value */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab errno = EINV;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab /* return a number that shows an error has occurred */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab return (-1);}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+int myGoodFunction() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab /* return a number that shows no error has occurred */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab return (0);}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+int main() \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab /* this will hold the status that the function returns */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab int status;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab /* clear errno.  0 means no error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab errno = 0;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab /* call a function, and save its return value */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab status = myBadFunction();}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab /* check that nothing went wrong */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab if (status != 0) \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \tab /* whoops, status is not zero, some error occurred */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \tab printf(\uc2 \u8220\'81\'67An Error!\\n\u8221\'81\'68); \uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab else \{}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \tab /* no error, carry on computing */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+\tab \}}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+errno.h defines several errors, including :-}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+Other useful things like ERROR, OK, and E_OK may be defined as well.  If not, we can #define them ourselves, lik}{\rtlch \ltrch\loch\loch\f8
+e}{\rtlch \ltrch\loch\loch\f8
+ this :-}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#define  ERROR\tab -1}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#define OK\tab \tab 0}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\cbpat3{\rtlch \ltrch\loch\loch\f8
+#define E_OK\tab \tab 0}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+#define makes the pre-processor define a symbol (a string of numbers & letters \u8211\'3f a \uc2 \u8220\'81\'67word\u8221\'81\'68, effectively, \uc1 }{\rtlch \ltrch\loch\loch\f8
+that has a particular meaning}{\rtlch \ltrch\loch\loch\f8
+).  Everywhere in the program text that the first string appears, the second one is put there instead.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+Which other pre-processor directive have we seen?}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+What does it do?}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+OK, so a function returns -1 to indicate an error, and sets errno accordingly.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\ul\ulc0\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+There are two useful functions, perror() and st}{\rtlch \ltrch\loch\loch\f8
+rerror().  }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+perror() prints out what a particular error code means, and strerror returns a string of the error's meaning, that you can do other things with.  So :}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+errno = EINV;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+perror(}{\rtlch \ltrch\loch\loch\f8
+NULL}{\rtlch \ltrch\loch\loch\f8
+);}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\ul\ulc0\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\ulnone\ulc0\rtlch \ltrch\loch\loch\f8
+gives us}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\ul\ulc0\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\ul\ulc0\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\ul\ulc0\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\ul\ulc0\rtlch \ltrch\loch\loch\f8
+Uses}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+\tab Global variables are a useful way of conveying information from one part of a program to another, like \uc2 \u8220\'81\'67what kind of error just happened\u8221\'81\'68\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\ul\ulc0\rtlch \ltrch\loch\loch\f8
+Perror()}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\ul\ulc0\rtlch \ltrch\loch\loch\f8
+Strerror()}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+The actual contents of the errno.h file looks like this, on my system :-}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#ifndef _ERRNO_H}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define _ERRNO_H}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f9
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+extern int errno;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f9
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EPERM            1      /* Operation not permitted */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOENT           2      /* No such file or directory */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ESRCH            3      /* No such process */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EINTR            4      /* Interrupted system call */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EIO              5      /* I/O error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENXIO            6      /* No such device or address */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define E2BIG            7      /* Arg list too long */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOEXEC          8      /* Exec format error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBADF            9      /* Bad file number */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ECHILD          10      /* No child processes */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EAGAIN          11      /* Try again */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOMEM          12      /* Out of memory */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EACCES          13      /* Permission denied */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EFAULT          14      /* Bad address */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOTBLK         15      /* Block device required */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBUSY           16      /* Device or resource busy */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EEXIST          17      /* File exists */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EXDEV           18      /* Cross-device link */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENODEV          19      /* No such device */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOTDIR         20      /* Not a directory */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EISDIR          21      /* Is a directory */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EINVAL          22      /* Invalid argument */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENFILE          23      /* File table overflow */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EMFILE          24      /* Too many open files */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOTTY          25      /* Not a typewriter */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ETXTBSY         26      /* Text file busy */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EFBIG           27      /* File too large */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOSPC          28      /* No space left on device */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ESPIPE          29      /* Illegal seek */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EROFS           30      /* Read-only file system */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EMLINK          31      /* Too many links */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EPIPE           32      /* Broken pipe */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EDOM            33      /* Math argument out of domain of func */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ERANGE          34      /* Math result not representable */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EDEADLK         35      /* Resource deadlock would occur */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENAMETOOLONG    36      /* File name too long */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOLCK          37      /* No record locks available */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOSYS          38      /* Function not implemented */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOTEMPTY       39      /* Directory not empty */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ELOOP           40      /* Too many symbolic links encountered */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EWOULDBLOCK     EAGAIN  /* Operation would block */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOMSG          42      /* No message of desired type */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EIDRM           43      /* Identifier removed */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ECHRNG          44      /* Channel number out of range */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EL2NSYNC        45      /* Level 2 not synchronized */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EL3HLT          46      /* Level 3 halted */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EL3RST          47      /* Level 3 reset */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ELNRNG          48      /* Link number out of range */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EUNATCH         49      /* Protocol driver not attached */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOCSI          50      /* No CSI structure available */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EL2HLT          51      /* Level 2 halted */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBADE           52      /* Invalid exchange */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBADR           53      /* Invalid request descriptor */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EXFULL          54      /* Exchange full */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOANO          55      /* No anode */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBADRQC         56      /* Invalid request code */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBADSLT         57      /* Invalid slot */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f9
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EDEADLOCK       EDEADLK}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f9
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBFONT          59      /* Bad font file format */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOSTR          60      /* Device not a stream */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENODATA         61      /* No data available */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ETIME           62      /* Timer expired */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOSR           63      /* Out of streams resources */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENONET          64      /* Machine is not on the network */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOPKG          65      /* Package not installed */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EREMOTE         66      /* Object is remote */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOLINK         67      /* Link has been severed */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EADV            68      /* Advertise error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ESRMNT          69      /* Srmount error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ECOMM           70      /* Communication error on send */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EPROTO          71      /* Protocol error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EMULTIHOP       72      /* Multihop attempted */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EDOTDOT         73      /* RFS specific error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBADMSG         74      /* Not a data message */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EOVERFLOW       75      /* Value too large for defined data type */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOTUNIQ        76      /* Name not unique on network */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EBADFD          77      /* File descriptor in bad state */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EREMCHG         78      /* Remote address changed */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ELIBACC         79      /* Can not access a needed shared library */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ELIBBAD         80      /* Accessing a corrupted shared library */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ELIBSCN         81      /* .lib section in a.out corrupted */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ELIBMAX         82      /* Attempting to link in too many shared libraries */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ELIBEXEC        83      /* Cannot exec a shared library directly */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EILSEQ          84      /* Illegal byte sequence */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ERESTART        85      /* Interrupted system call should be restarted */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ESTRPIPE        86      /* Streams pipe error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EUSERS          87      /* Too many users */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOTSOCK        88      /* Socket operation on non-socket */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EDESTADDRREQ    89      /* Destination address required */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EMSGSIZE        90      /* Message too long */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EPROTOTYPE      91      /* Protocol wrong type for socket */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOPROTOOPT     92      /* Protocol not available */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EPROTONOSUPPORT 93      /* Protocol not supported */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ESOCKTNOSUPPORT 94      /* Socket type not supported */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EOPNOTSUPP      95      /* Operation not supported on transport endpoint */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EPFNOSUPPORT    96      /* Protocol family not supported */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EAFNOSUPPORT    97      /* Address family not supported by protocol */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EADDRINUSE      98      /* Address already in use */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EADDRNOTAVAIL   99      /* Cannot assign requested address */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENETDOWN        100     /* Network is down */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENETUNREACH     101     /* Network is unreachable */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENETRESET       102     /* Network dropped connection because of reset */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ECONNABORTED    103     /* Software caused connection abort */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ECONNRESET      104     /* Connection reset by peer */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOBUFS         105     /* No buffer space available */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EISCONN         106     /* Transport endpoint is already connected */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOTCONN        107     /* Transport endpoint is not connected */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ESHUTDOWN       108     /* Cannot send after transport endpoint shutdown */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ETOOMANYREFS    109     /* Too many references: cannot splice */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ETIMEDOUT       110     /* Connection timed out */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ECONNREFUSED    111     /* Connection refused */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EHOSTDOWN       112     /* Host is down */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EHOSTUNREACH    113     /* No route to host */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EALREADY        114     /* Operation already in progress */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EINPROGRESS     115     /* Operation now in progress */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ESTALE          116     /* Stale NFS file handle */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EUCLEAN         117     /* Structure needs cleaning */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOTNAM         118     /* Not a XENIX named type file */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENAVAIL         119     /* No XENIX semaphores available */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EISNAM          120     /* Is a named type file */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EREMOTEIO       121     /* Remote I/O error */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EDQUOT          122     /* Quota exceeded */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f9
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define ENOMEDIUM       123     /* No medium found */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define EMEDIUMTYPE     124     /* Wrong medium type */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f9
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#endif /* _ERRNO_H */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f9
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+There are a couple of things to see here, which we'll point out but not delve into yet.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+Firstly, the}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#ifndef _ERRNO_H              /*    }{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+<=------ means \uc2 \u8220\'81\'67if not defined\u8221\'81\'68 */\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#define _ERRNO_H}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\fs20\loch\f9
+\uc2 \u8230\'81\'63\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+#endif /* _ERRNO_H */}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+Can you work through what happens?  What would happen if this file were included twice?}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+These are called include guards, and are there to stop \uc2 \u8230\'81\'63. what ?\uc1 }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+Secondly, the }
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f9
+extern int errno;}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+The extern keyword means that this integer called \uc2 \u8220\'81\'67errno\u8221\'81\'68 is external, it resides elsewhere, in a bit of library code.  We (and the compiler) need to know that errno is an integer, and here we are \uc1 }{\b\afs20\ab\rtlch \ltrch\loch\fs20\loch\f8
+declaring}{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+ that it is one.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+It means that somewhere else, in another bit of code, is the actual }{\b\afs20\ab\rtlch \ltrch\loch\fs20\loch\f8
+definition}{\afs20\rtlch \ltrch\loch\fs20\loch\f8
+ of errno, that will result in a bit of memory being reserved for it to live in.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+/usr/lib/syslinux/com32/include/errno.h}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057{\rtlch \ltrch\loch\loch\f8
+OK, back to the calculator.  Lets add some error handling to it.}
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\rtlch \ltrch\loch\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par \pard\plain \s21\sl240\slmult1\ql\widctlpar\sb0\sa0\ltrpar{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\cf0\kerning1\dbch\af11\langfe1033\dbch\af15\afs22\alang1025\loch\f4\fs22\lang2057\afs20\rtlch \ltrch\loch\fs20\loch\f8
+
+\par }

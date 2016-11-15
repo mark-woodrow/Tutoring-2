@@ -94,9 +94,15 @@ void chessboardExample() {
     printf("sum is %.0Lf coins\n", sum);
 
     printf("Computed sum is %.0Lf\n", powerld(2, 64) - 1);
+
     printf("Computed sum is %.0lf\n", powerl(2, 64) - 1);
 
 }
+
+
+
+
+
 
 void timesTable() {
 
